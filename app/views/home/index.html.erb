@@ -1,4 +1,8 @@
-<h1>自我レベル診断</h1>
-<p>あなたの自我、試してみませんか？</p>
+<div class="min-h-screen flex flex-col justify-center items-center bg-gray-100 text-center p-8">
+  <h1 class="text-4xl font-bold mb-4">自我レベル診断</h1>
+  <p class="text-lg text-gray-600 mb-6">
+    あなたの中の“自我”を診断してみよう。
+  </p>
 
-<%= link_to "診断スタート", "#", class: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" %>
+  <%= link_to "診断スタート ▶", questions_path, class: "bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition" %>
+</div>
