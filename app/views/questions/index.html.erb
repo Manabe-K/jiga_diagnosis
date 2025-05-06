@@ -1,9 +1,27 @@
-<div class="min-h-screen flex flex-col justify-center items-center p-8">
-  <h2 class="text-3xl font-semibold mb-4">質問1</h2>
-  <p class="mb-6">他人にどう思われてるか、めっちゃ気になる？</p>
+<!-- app/views/questions/index.html.erb -->
+<div class="min-h-screen bg-white flex flex-col items-center justify-center p-6">
+  <div class="bg-gray-100 rounded-xl shadow-lg max-w-md w-full p-8">
+    <h2 class="text-xl font-bold mb-4">
+      質問 <%= @step + 1 %> / 10
+    </h2>
 
-  <div class="space-x-4">
-    <button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">はい</button>
-    <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">いいえ</button>
+    <p class="text-gray-700 text-lg mb-6"><%= @question[:text] %></p>
+
+    <%= form_with url: questions_path, method: :get, local: true do %>
+      <%= hidden_field_tag :step, @step + 1 %>
+
+      <div class="space-y-4 mb-6">
+        <% @question[:options].each_with_index do |option, i| %>
+          <label class="block bg-white border rounded-lg px-4 py-3 cursor-pointer hover:shadow-md transition">
+            <%= radio_button_tag :answer, option[:score], false, class: "form-radio text-blue-500 mr-2" %>
+            <span class="text-gray-800"><%= option[:text] %></span>
+          </label>
+        <% end %>
+      </div>
+
+      <div class="text-center">
+        <%= submit_tag "次へ", class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition" %>
+      </div>
+    <% end %>
   </div>
 </div>
