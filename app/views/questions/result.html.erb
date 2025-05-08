@@ -1,7 +1,7 @@
 <% if @character.present? %>
-  <% tweet_text = "診断結果：Lv.#{@character[:level]}「#{@character[:name]}」 あなたの自己主張レベルはどれくらい？" %>
-  <% tweet_url = request.original_url.presence || root_url %>
-  <% share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(tweet_url)}&hashtags=#{ERB::Util.url_encode('自己主張レベル診断')}" %>
+  <% tweet_text = "私の自己主張は、Lv#{@character[:level]}「#{@character[:name]}」でした。\n説明文：#{@character[:description]}\nあなたの自己主張レベルはどれくらい？" %>
+<% tweet_url = request.original_url.presence || root_url %>
+<% share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(tweet_url)}&hashtags=#{ERB::Util.url_encode('自己主張レベル診断,結果に根拠はありません')}" %>
 
   <div class="min-h-screen bg-[#fefaf5] flex items-center justify-center px-6 sm:px-10 py-20 font-zen">
     <div class="w-full max-w-xl bg-white border-[#f5e9db] rounded-2xl shadow-xl text-center px-8 sm:px-12 py-10 space-y-6">
