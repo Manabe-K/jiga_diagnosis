@@ -6,11 +6,4 @@
   html {
     font-family: sans-serif;
   }
-  body {
-    background-image: url('/assets/bg_pattern.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-color: #fefaf5;
-  }
 }
