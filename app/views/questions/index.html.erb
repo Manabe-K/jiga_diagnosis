@@ -1,27 +1,48 @@
-<!-- app/views/questions/index.html.erb -->
-<div class="min-h-screen bg-white flex flex-col items-center justify-center p-6">
-  <div class="bg-gray-100 rounded-xl shadow-lg max-w-md w-full p-8">
-    <h2 class="text-xl font-bold mb-4">
-      質問 <%= @step + 1 %> / 10
+<div class="min-h-screen bg-[#fefaf5] flex items-center justify-center px-6 sm:px-10 py-20 font-zen">
+  <div class="w-full max-w-xl bg-white border-[#f5e9db] rounded-2xl shadow-xl px-8 sm:px-12 py-10">
+
+    <h2 class="text-sm sm:text-base font-bold text-[#4b3e2e] mb-4 text-center tracking-wide">
+      質問 <%= @step + 1 %> / <%= session[:question_order]&.size || 7 %>
     </h2>
 
-    <p class="text-gray-700 text-lg mb-6"><%= @question[:text] %></p>
-
-    <%= form_with url: questions_path, method: :get, local: true do %>
-      <%= hidden_field_tag :step, @step + 1 %>
-
-      <div class="space-y-4 mb-6">
-        <% @question[:options].each_with_index do |option, i| %>
-          <label class="block bg-white border rounded-lg px-4 py-3 cursor-pointer hover:shadow-md transition">
-            <%= radio_button_tag :answer, option[:score], false, class: "form-radio text-blue-500 mr-2" %>
-            <span class="text-gray-800"><%= option[:text] %></span>
-          </label>
-        <% end %>
+    <% if @question.present? %>
+      <!-- ✅ タイトル（2行でも高さ維持） -->
+      <div class="min-h-[4.5rem] flex items-center justify-center mb-2">
+        <p class="text-sm sm:text-base leading-relaxed text-center min-h-[3.5rem] sm:min-h-[3rem]">
+          <%= simple_format(@question[:text]) %>
+        </p>
       </div>
 
-      <div class="text-center">
-        <%= submit_tag "次へ", class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition" %>
-      </div>
+      <%= form_with url: questions_path, method: :get, local: true do |f| %>
+        <%= hidden_field_tag :step, @step + 1 %>
+        <div class="space-y-3 mb-4">
+          <% @question[:options].each_with_index do |option, i| %>
+            <label for="answer_<%= i %>" class="flex items-center bg-[#fff9f3] border border-[#e6d6c0] rounded-xl px-5 py-4 shadow-sm cursor-pointer hover:shadow-md transition hover:scale-[1.01]">
+              <%= radio_button_tag :answer, option[:score], false, id: "answer_#{i}", class: "peer hidden", onchange: "this.form.submit();" %>
+              <div class="w-4 h-4 mr-3 border border-[#8b7e6e] rounded-full peer-checked:bg-[#4b3e2e]"></div>
+              <span class="text-xs sm:text-sm text-[#4b3e2e]">
+                <%= option[:text] %>
+              </span>
+            </label>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-red-500 text-sm sm:text-base mb-6 text-center">設問が見つかりませんでした。</p>
     <% end %>
+
+    <!-- ✅ 戻るボタン用スペースは常に確保 -->
+    <div class="h-10 mt-6">
+      <% if @step > 0 %>
+        <%= form_with url: questions_path, method: :get, local: true do |f| %>
+          <%= hidden_field_tag :step, @step - 1 %>
+          <%= hidden_field_tag :commit, "戻る" %>
+          <div class="text-center">
+            <%= submit_tag "戻る", class: "text-xs text-[#907d65] underline hover:text-[#4b3e2e]" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
   </div>
 </div>

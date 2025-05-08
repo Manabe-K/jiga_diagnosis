@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Myapp" %></title>
+    <title><%= content_for(:title) || "自己主張は、何レベル？" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= yield :head %>
+    <!-- OGP -->
+    <% if @character.present? %>
+      <% og_title = "Lv.#{@character[:level]}「#{@character[:name]}」でした！" %>
+      <% og_description = "#{@character[:description].truncate(60)}" %>
+      <% og_image = image_url("ego_levels/level#{@character[:level]}.png") %>
+    <% else %>
+      <% og_title = "あなたの自己主張、何レベル？" %>
+      <% og_description = "“言いたい、でも気になる”。そんなあなたの“らしさ”バランスを診断！" %>
+      <% og_image = image_url("ogp.png") %>
+    <% end %>
 
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <meta property="og:title" content="<%= og_title %>" />
+    <meta property="og:description" content="<%= og_description %>" />
+    <meta property="og:image" content="<%= og_image %>" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="自己主張レベル診断" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="あなたの自己主張、何レベル？" />
+    <meta name="twitter:description" content="“言いたい、でも気になる”。そんなあなたの“らしさ”バランスを診断！" />
+    <meta name="twitter:image" content="<%= image_url('ogp.png') %>" />
+
+    <!-- ファビコン -->
+    <link rel="icon" href="<%= asset_path 'favicon.svg' %>" type="image/svg+xml">
+    <link rel="icon" href="<%= asset_path 'favicon.png' %>" type="image/png">
+    <link rel="apple-touch-icon" href="<%= asset_path 'favicon.png' %>">
+
+    <%= yield :head %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application.tailwind", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
 
