@@ -10,11 +10,11 @@
     <!-- OGP -->
     <% if @character.present? %>
       <% og_title = "Lv.#{@character[:level]}「#{@character[:name]}」でした！" %>
-      <% og_description = "#{@character[:description].truncate(60)}" %>
-      <% og_image = image_url("ego_levels/level#{@character[:level]}.png") %>
+      <% og_description = @character[:description].truncate(60) %>
+      <% og_image = image_url("ogp_levels/level#{@character[:level]}.png") %>
     <% else %>
       <% og_title = "あなたの自己主張、何レベル？" %>
-      <% og_description = "“言いたい、でも気になる”。そんなあなたの“らしさ”バランスを診断！" %>
+      <% og_description = "“自分らしく、でも空気は読みたい”そんなあなたの“主張レベル”を診断！" %>
       <% og_image = image_url("ogp.png") %>
     <% end %>
 
@@ -27,9 +27,9 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="あなたの自己主張、何レベル？" />
-    <meta name="twitter:description" content="“言いたい、でも気になる”。そんなあなたの“らしさ”バランスを診断！" />
-    <meta name="twitter:image" content="<%= image_url('ogp.png') %>" />
+    <meta name="twitter:title" content="<%= og_title %>" />
+    <meta name="twitter:description" content="<%= og_description %>" />
+    <meta name="twitter:image" content="<%= og_image %>" />
 
     <!-- ファビコン -->
     <link rel="icon" href="<%= asset_path 'favicon.svg' %>" type="image/svg+xml">
