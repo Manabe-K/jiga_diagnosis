@@ -17,13 +17,11 @@
         <%= hidden_field_tag :step, @step + 1 %>
         <div class="space-y-3 mb-4">
           <% @question[:options].each_with_index do |option, i| %>
-            <label for="answer_<%= i %>" class="flex items-center bg-[#fff9f3] border border-[#e6d6c0] rounded-xl px-5 py-4 shadow-sm cursor-pointer hover:shadow-md transition hover:scale-[1.01]">
-              <%= radio_button_tag :answer, option[:score], false, id: "answer_#{i}", class: "peer hidden", onchange: "this.form.submit();" %>
-              <div class="w-4 h-4 mr-3 border border-[#8b7e6e] rounded-full peer-checked:bg-[#4b3e2e]"></div>
-              <span class="text-xs sm:text-sm text-[#4b3e2e]">
-                <%= option[:text] %>
-              </span>
-            </label>
+          <label for="answer_<%= i %>" class="flex items-center bg-[#fff9f3] border border-[#e6d6c0] hover:border-[#d4b080] rounded-xl px-5 py-4 cursor-pointer transform transition-transform duration-150 hover:-translate-y-0.5">
+            <%= radio_button_tag :answer, option[:score], false, id: "answer_#{i}", class: "peer hidden", onchange: "this.form.submit();" %>
+            <div class="w-4 h-4 mr-3 border border-[#8b7e6e] rounded-full peer-checked:bg-[#4b3e2e]"></div>
+            <span class="text-xs sm:text-sm text-[#4b3e2e]"><%= option[:text] %></span>
+          </label>
           <% end %>
         </div>
       <% end %>
