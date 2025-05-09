@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root "home#index"
   get "/result", to: "questions#result"
   get "/analyzing", to: "questions#analyzing"
-  get "share/level/:id", to: "share#show", as: :share_level
+  get "/share/level/:id", to: "share#show", as: :share_level
 end

@@ -7,9 +7,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!-- ✅ meta-tagsで統一的にOGP管理 -->
-    <%= display_meta_tags(site: "自己主張レベル診断", reverse: true) %>
-
     <!-- ファビコン -->
     <link rel="icon" href="<%= asset_path 'favicon.svg' %>" type="image/svg+xml">
     <link rel="icon" href="<%= asset_path 'favicon.png' %>" type="image/png">
