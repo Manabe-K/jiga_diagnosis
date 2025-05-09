@@ -16,8 +16,15 @@
     <meta name="twitter:title" content="Lv.<%= @character[:level] %>「<%= @character[:name] %>」でした！" />
     <meta name="twitter:description" content="<%= @character[:description].truncate(60) %>" />
     <meta name="twitter:image" content="<%= "#{request.base_url}/ogp_levels/level#{@character[:level]}.png" %>" />
+
+    <!-- ✅ ユーザーはリダイレクト -->
+    <script>
+      window.location.href = "<%= root_url %>";
+    </script>
   </head>
   <body>
-    <noscript><a href="<%= root_url %>">診断トップに戻る</a></noscript>
+    <noscript>
+      <p><a href="<%= root_url %>">トップページはこちら</a></p>
+    </noscript>
   </body>
 </html>
