@@ -1,8 +1,8 @@
 <% if @character.present? %>
-  <%
-    tweet_text = "わたしの自己主張は、Lv#{@character[:level]}「#{@character[:name]}」でした。\nあなたの自己主張レベルはどれくらい？"
+  <% 
+    tweet_text = "自己主張は、Lv#{@character[:level]}「#{@character[:name]}」でした。\nあなたの自己主張レベルはどれくらい？"
     tweet_url = share_level_url(@character[:level])
-    cache_buster = Time.now.to_i.to_s
+    cache_buster = Time.now.to_i.to_s # OGP更新用のクエリ文字
     share_url = "https://twitter.com/intent/tweet?" + {
       text: tweet_text,
       url: "#{tweet_url}?t=#{cache_buster}",
@@ -22,7 +22,7 @@
       </div>
 
       <div class="my-4 min-h-[256px] flex items-center justify-center">
-        <%= image_tag "/ego_levels/level#{@character[:level]}.png",
+        <%= image_tag "ego_levels/level#{@character[:level]}.png",
             alt: "Lv#{@character[:level]}のキャラ画像",
             class: "w-64 h-auto mx-auto rounded-xl shadow-md",
             loading: "lazy" %>
@@ -38,10 +38,8 @@
       <%= link_to "▶ Xで結果をシェアする", share_url,
         class: "inline-block bg-[#4b3e2e] hover:bg-[#3a2f22] text-white font-bold text-base px-8 py-3 rounded-full shadow-md transition hover:scale-105 duration-200",
         target: "_blank", rel: "noopener noreferrer" %>
-
     </div>
   </div>
-
 <% else %>
   <p class="text-gray-500 text-center py-10">診断に失敗しました。</p>
 <% end %>

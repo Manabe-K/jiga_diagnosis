@@ -10,25 +10,26 @@
       でも、空気は読みたい。
     </p>
 
-    <div class="space-y-2">
-      <%= link_to "▶ 診断をはじめる", questions_path,
-        class: "inline-block bg-[#e4b74c] hover:bg-[#d3a841] text-white font-bold text-lg px-10 py-4 rounded-full shadow-lg transition transform hover:scale-105 hover:shadow-xl duration-200" %>
-    </div>
+<div class="space-y-2">
+  <%= link_to "▶ 診断をはじめる", questions_path,
+    class: "inline-block bg-[#e4b74c] hover:bg-[#d3a841] text-white font-bold text-lg px-10 py-4 rounded-full shadow-lg transition transform hover:scale-105 hover:shadow-xl duration-200" %>
+</div>
 
-    <div class="mt-10 space-y-2 text-xs text-gray-400 text-center">
-      <p>⚠️ あくまでネタアプリ。結果については、なんの根拠もありません。</p>
-    </div>
+<!-- 注意書きと制作者 -->
+<div class="mt-10 space-y-2 text-xs text-gray-400 text-center">
+  <p>⚠️ あくまでネタアプリ。結果については、なんの根拠もありません。</p>
+</div>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-[11px]">
-      <%= image_tag "/profile.jpg", alt: "ナベのプロフィール画像", class: "w-8 h-8 rounded-full object-cover shadow" %>
-      <span class="text-[11px] text-gray-600">制作：ナベ</span>
-      <%= link_to "https://x.com/ma_nabe11", target: "_blank", rel: "noopener noreferrer",
-          class: "inline-flex items-center justify-center w-6 h-6 rounded-full bg-black hover:bg-gray-800 transition duration-200" do %>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" fill="white" class="w-4 h-4">
-          <path d="M794 0H957L606 520l363 707H768l-280-414L168 1227H0l374-535L33 0h363l250 374L794 0Zm-62 1104h79L229 112 140 112 732 1104Z"/>
-        </svg>
-      <% end %>
-    </div>
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-[11px]">
+    <%= image_tag "profile.jpg", alt: "ナベのプロフィール画像", class: "w-8 h-8 rounded-full object-cover shadow" %>
+    <span class="text-[11px] text-gray-600">制作：ナベ</span>
+    <%= link_to "https://x.com/ma_nabe11", target: "_blank", rel: "noopener noreferrer",
+        class: "inline-flex items-center justify-center w-6 h-6 rounded-full bg-black hover:bg-gray-800 transition duration-200" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1227" fill="white" class="w-4 h-4">
+        <path d="M794 0H957L606 520l363 707H768l-280-414L168 1227H0l374-535L33 0h363l250 374L794 0Zm-62 1104h79L229 112 140 112 732 1104Z"/>
+      </svg>
+    <% end %>
+  </div>
 
   </div>
 </div>
