@@ -48,10 +48,4 @@ class QuestionsController < ApplicationController
 
     # ❌ resultではセッションをリセットしない（リロード対応）
   end
-
-  def ogp
-    level = params[:level].to_i
-    @character = CHARACTERS.find { |c| c[:level] == level }
-    render layout: 'ogp' # OGP専用の最小レイアウトを使う
-  end
 end

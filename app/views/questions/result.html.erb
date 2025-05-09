@@ -1,24 +1,6 @@
-<% content_for :meta_tags do %>
-  <% og_title = "Lv.#{@character[:level]}「#{@character[:name]}」でした！" %>
-  <% og_description = @character[:description].truncate(60) %>
-  <% og_image = image_url("ogp_levels/level#{@character[:level]}.png") %>
-
-  <meta property="og:title" content="<%= og_title %>" />
-  <meta property="og:description" content="<%= og_description %>" />
-  <meta property="og:image" content="<%= og_image %>" />
-  <meta property="og:url" content="<%= request.original_url %>" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="自己主張レベル診断" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="<%= og_title %>" />
-  <meta name="twitter:description" content="<%= og_description %>" />
-  <meta name="twitter:image" content="<%= og_image %>" />
-<% end %>
-
 <% if @character.present? %>
   <% tweet_text = "自己主張は、Lv#{@character[:level]}「#{@character[:name]}」でした。\nあなたの自己主張レベルはどれくらい？" %>
-  <% tweet_url = request.original_url.presence || root_url %>
+  <% tweet_url = ogp_level_url(@character[:level]) %> <!-- ここでOGP専用ページURLを指定 -->
   <% share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(tweet_url)}&hashtags=#{ERB::Util.url_encode('自己主張レベル診断,結果に根拠はありません')}" %>
 
   <div class="min-h-screen bg-[#fefaf5] flex items-center justify-center px-6 sm:px-10 py-20 font-zen">
