@@ -3,5 +3,4 @@ Rails.application.routes.draw do
   root "home#index"
   get "/result", to: "questions#result"
   get "/analyzing", to: "questions#analyzing"
-  get 'ogp/level:id', to: 'ogp#show', as: :ogp_level
 end

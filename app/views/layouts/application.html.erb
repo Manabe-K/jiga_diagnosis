@@ -8,7 +8,22 @@
     <%= csp_meta_tag %>
 
     <!-- OGP（result.html.erb などから content_for で注入される） -->
-    <%= yield :meta_tags %>
+    <% unless content_for?(:meta_tags) %>
+      <% og_image = image_url("ogp.png") %>
+      <meta property="og:title" content="あなたの自己主張、何レベル？" />
+      <meta property="og:description" content="“自分らしく、でも空気は読みたい”そんなあなたの“主張レベル”を診断！" />
+      <meta property="og:image" content="<%= og_image %>" />
+      <meta property="og:url" content="https://jigadiagnosis.com" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="自己主張レベル診断" />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="あなたの自己主張、何レベル？" />
+      <meta name="twitter:description" content="“自分らしく、でも空気は読みたい”そんなあなたの“主張レベル”を診断！" />
+      <meta name="twitter:image" content="<%= og_image %>" />
+    <% else %>
+      <%= yield :meta_tags %>
+    <% end %>
 
     <!-- ファビコン -->
     <link rel="icon" href="<%= asset_path 'favicon.svg' %>" type="image/svg+xml">
