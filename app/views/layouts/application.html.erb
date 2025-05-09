@@ -7,7 +7,6 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <!-- ファビコン -->
     <link rel="icon" href="<%= asset_path 'favicon.svg' %>" type="image/svg+xml">
     <link rel="icon" href="<%= asset_path 'favicon.png' %>" type="image/png">
     <link rel="apple-touch-icon" href="<%= asset_path 'favicon.png' %>">
@@ -16,6 +15,24 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application.tailwind", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-11198671523"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-11198671523');
+
+      // Turbo遷移でもPVを送る
+      document.addEventListener("turbo:load", function () {
+        if (window.location.pathname === "/result") {
+          gtag('event', 'page_view', {
+            page_path: '/result',
+            page_title: '診断結果'
+          });
+        }
+      });
+    </script>
   </head>
 
   <body style="background: url('<%= asset_path('bg_pattern.png') %>') center center / cover fixed no-repeat; background-color: #fefaf5;" class="font-zen">
