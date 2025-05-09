@@ -30,7 +30,7 @@ class QuestionsController < ApplicationController
   def result
     scores = session[:answers] || []
     total_score = scores.map(&:to_i).sum
-  
+
     level = case total_score
             when 0..2   then 1
             when 3..5   then 2
@@ -43,15 +43,17 @@ class QuestionsController < ApplicationController
             when 24..26 then 9
             else             10
             end
-  
+
     @character = CHARACTERS.find { |c| c[:level] == level }
+
+    # ✅ OGP用画像URLは public/ 以下を直指定する（meta-tagsはOGPには不要だけど一応設定）
+    og_image_path = "/ogp_levels/level#{level}.png"
+    og_image_url = "#{request.base_url}#{og_image_path}"
   
-    # meta-tags 生成（Xでは使わないが表示用にはOK）
-    og_image_url = view_context.image_url("ogp_levels/level#{level}.png")
     prepare_meta_tags(
       title:       "Lv.#{level}「#{@character[:name]}」でした！",
       description: @character[:description],
-      image:       og_image_url
+      image:       og_image_path # ←ここ相対パスでもOK。ヘルパー内でbase_url結合される
     )
   end
 end
