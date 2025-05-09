@@ -5,14 +5,12 @@ class ShareController < ApplicationController
     level = params[:id].to_i
     @character = CHARACTERS.find { |c| c[:level] == level }
 
-    og_image_url = view_context.image_url("ogp_levels/level#{level}.png")
+    og_image = view_context.image_url("ogp_levels/level#{level}.png")
     prepare_meta_tags(
       title:       "Lv.#{level}「#{@character[:name]}」でした！",
       description: @character[:description],
-      image:       og_image_url
+      image:       og_image,
+      url:         root_url # ← これがシェア時のリンク先になる
     )
-
-    # OGP出力後、リダイレクト（表示はしない）
-    render layout: "share"
   end
 end

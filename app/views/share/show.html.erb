@@ -1,2 +1,16 @@
-<!-- OGP用。metaタグだけ読み取らせて即リダイレクト -->
-<meta http-equiv="refresh" content="0; url=<%= root_url %>">
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= "Lv.#{@character[:level]}「#{@character[:name]}」でした！" %></title>
+    <%= display_meta_tags %>
+    <script>
+      // JSでトップにリダイレクト（ユーザーにはこのページは見せない）
+      window.location.href = "<%= root_url %>";
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p>▶ <a href="<%= root_url %>">診断トップに戻る</a></p>
+    </noscript>
+  </body>
+</html>

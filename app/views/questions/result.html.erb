@@ -1,8 +1,7 @@
 <% if @character.present? %>
   <% tweet_text = "自己主張は、Lv#{@character[:level]}「#{@character[:name]}」でした。\nあなたの自己主張レベルはどれくらい？" %>
-  <% tweet_url = share_level_url(@character[:level]) %> <!-- ←OGP専用URL -->
-<% share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(tweet_url)}&hashtags=#{ERB::Util.url_encode('自己主張レベル診断,結果に根拠はありません')}" %>
-
+  <% tweet_url = share_level_url(@character[:level]) %> <!-- OGPあり -->
+  <% share_url = "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(tweet_url)}&hashtags=#{ERB::Util.url_encode('自己主張レベル診断,結果に根拠はありません')}" %>
   <div class="min-h-screen bg-[#fefaf5] flex items-center justify-center px-6 sm:px-10 py-20 font-zen">
     <div class="w-full max-w-xl bg-white border-[#f5e9db] rounded-2xl shadow-xl text-center px-8 sm:px-12 py-10 space-y-6">
 
