@@ -46,6 +46,14 @@ class QuestionsController < ApplicationController
 
     @character = CHARACTERS.find { |c| c[:level] == level }
 
-    # ❌ resultではセッションをリセットしない（リロード対応）
+    # ✅ OGP画像のURLを生成
+    og_image_url = view_context.image_url("ogp_levels/level#{level}.png")
+
+    # ✅ meta-tags による OGP 出力
+    prepare_meta_tags(
+      title:       "Lv.#{level}「#{@character[:name]}」でした！",
+      description: @character[:description],
+      image:       og_image_url
+    )
   end
 end
