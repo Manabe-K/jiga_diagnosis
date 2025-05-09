@@ -1,6 +1,6 @@
 <% if @character.present? %>
   <% 
-    tweet_text = "自己主張は、Lv#{@character[:level]}「#{@character[:name]}」でした。\nあなたの自己主張レベルはどれくらい？"
+    tweet_text = "わたしの自己主張は、Lv#{@character[:level]}「#{@character[:name]}」でした。\nあなたの自己主張レベルはどれくらい？"
     tweet_url = share_level_url(@character[:level])
     cache_buster = Time.now.to_i.to_s # OGP更新用のクエリ文字
     share_url = "https://twitter.com/intent/tweet?" + {
