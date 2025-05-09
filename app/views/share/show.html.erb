@@ -4,20 +4,18 @@
     <meta charset="utf-8">
     <title>Lv.<%= @character[:level] %>「<%= @character[:name] %>」でした！</title>
 
-    <!-- ✅ OGP -->
     <meta property="og:title" content="Lv.<%= @character[:level] %>「<%= @character[:name] %>」でした！" />
     <meta property="og:description" content="<%= @character[:description].truncate(60) %>" />
     <meta property="og:image" content="<%= "#{request.base_url}/ogp_levels/level#{@character[:level]}.png" %>" />
     <meta property="og:url" content="<%= root_url %>" />
     <meta property="og:type" content="website" />
 
-    <!-- ✅ Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Lv.<%= @character[:level] %>「<%= @character[:name] %>」でした！" />
     <meta name="twitter:description" content="<%= @character[:description].truncate(60) %>" />
     <meta name="twitter:image" content="<%= "#{request.base_url}/ogp_levels/level#{@character[:level]}.png" %>" />
+    <meta name="twitter:image:src" content="<%= "#{request.base_url}/ogp_levels/level#{@character[:level]}.png" %>" />
 
-    <!-- ✅ ユーザーはリダイレクト -->
     <script>
       window.location.href = "<%= root_url %>";
     </script>
