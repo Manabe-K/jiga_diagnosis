@@ -1,23 +1,18 @@
-<!-- views/share/show.html.erb -->
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>Lv.<%= @character[:level] %>「<%= @character[:name] %>」でした！</title>
     <meta property="og:title" content="Lv.<%= @character[:level] %>「<%= @character[:name] %>」でした！" />
     <meta property="og:description" content="<%= @character[:description].truncate(60) %>" />
-    <meta property="og:image" content="<%= image_url("ogp_levels/level#{@character[:level]}.png") %>" />
+    <meta property="og:image" content="<%= "#{request.base_url}/ogp_levels/level#{@character[:level]}.png" %>" />
     <meta property="og:url" content="<%= root_url %>" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Lv.<%= @character[:level] %>「<%= @character[:name] %>」でした！" />
     <meta name="twitter:description" content="<%= @character[:description].truncate(60) %>" />
-    <meta name="twitter:image" content="<%= image_url("ogp_levels/level#{@character[:level]}.png") %>" />
-
-    <script>
-      window.location.href = "<%= root_url %>";
-    </script>
+    <meta name="twitter:image" content="<%= "#{request.base_url}/ogp_levels/level#{@character[:level]}.png" %>" />
+    <meta http-equiv="refresh" content="0; URL=<%= root_url %>">
   </head>
-  <body>
-    <noscript><a href="<%= root_url %>">診断結果はこちら</a></noscript>
-  </body>
+  <body></body>
 </html>
